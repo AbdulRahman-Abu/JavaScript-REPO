@@ -52,7 +52,7 @@ document.querySelector("li").classList.remove("newClassList"); //this removes th
 
 
 // innerHTML  to change html text in elements
-document.querySelector("h1").innerHTML = "<strong>New Text</strong>";
+// document.querySelector("h1").innerHTML = "<strong>New Text</strong>";
 // this changes: Shopping List to : New Text
 
 
