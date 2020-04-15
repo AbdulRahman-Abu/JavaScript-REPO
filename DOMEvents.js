@@ -7,14 +7,33 @@ var input =document.getElementById("userinput");
 var button = document.getElementById("enter");
 var ul = document.querySelector("ul");
 
-button.addEventListener("click", function() {
-    if(input.value.length > 0) {
-        var li = document.createElement("li");                                // create li to hold new elements
-        li.appendChild(document.createTextNode(input.value));
-        ul.appendChild(li);
-        input.value = "";
+function inputLength() {
+    return input.value.length;
+}
+
+function createListElement() {
+    var li = document.createElement("li");                                // create li to hold new elements
+    li.appendChild(document.createTextNode(input.value));
+    ul.appendChild(li);
+    input.value = "";
+}
+
+function addListAfterClick() {
+    if(inputLength() > 0) {
+        createListElement();
     }
-})
+}
+
+function addListAfterKeyPress(event) {
+    if(inputLength() > 0 && event.keyCode === 13) {
+        createListElement();
+    }}
+
+button.addEventListener("click", addListAfterClick);
+    
+input.addEventListener("keypress", addListAfterKeyPress);
+
+
 
  
 
@@ -29,7 +48,7 @@ button.addEventListener("click", function() {
 
 /* 
 developer.mozilla.org/en-US/docs/Web/Events
-browse character codes
+browse character codes: cambiaresearch.com
 // We can use JS to listen to events eg click, mouseover, mouseenter, mouseleave
 // read more: eevents at developer.mozilla.org
 
@@ -57,6 +76,16 @@ button.addEventListener("click", function() {
     }
 })
 
+input.addEventListener("keypress", function(event) {
+    // console.log(event); // used to get the keycode of an event. Here keycode of enter is 13
+    if(input.value.length > 0 && event.keyCode === 13) {
+        var li = document.createElement("li");                                // create li to hold new elements
+        li.appendChild(document.createTextNode(input.value));
+        ul.appendChild(li);
+        input.value = "";
+    }
+})
+// REFRACTOR The codes above have been refactored to practice DRY..Dont Repeat Yourself
 
 
 Example two
